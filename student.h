@@ -19,11 +19,12 @@ private:
     string lastName;
     string emailAddress;
     int age;
-    vector<int> daysInCourse;
+    array<int, 3> daysInCourse;
     DegreeProgram program;
 
+    int rosterLength;
 public:
-    Student(string studentId, string firstName, string lastName, string emailAddress, int age, vector<int> daysInCourse, DegreeProgram program);
+    Student(string studentId, string firstName, string lastName, string emailAddress, int age, array<int,3> daysInCourse, DegreeProgram program);
 
     void setStudentId(string id);
     string getStudentId() const;
@@ -40,8 +41,8 @@ public:
     void setAge(int a);
     int getAge() const;
 
-    void setDaysInCourse(vector<int> d);
-    vector<int> getDaysInCourse() const;
+    void setDaysInCourse(array<int, 3> d);
+    array<int, 3> getDaysInCourse() const;
 
     void setDegreeProgram(DegreeProgram d);
     DegreeProgram getDegreeProgram() const;

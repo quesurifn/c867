@@ -7,52 +7,57 @@
 using namespace std;
 
 Roster::~Roster() {
-    classRoster.clear();
-    classRoster.shrink_to_fit();
+    for (int i = 0; i < 5; i++) {
+        rosterLength--;
+        delete classRoster[i];
+    }
 }
 
-vector<Student*> Roster::getClassRoster() {
+
+array<Student*, 5> Roster::getClassRoster() {
     return classRoster;
 }
 
 void Roster::add(string studentID, string firstName, string lastName, string emailAddress, int age, int daysInCourse1,
                  int daysInCourse2, int daysInCourse3, DegreeProgram degreeProgram) {
 
-    vector<int> daysInCourseField = {daysInCourse1, daysInCourse2, daysInCourse3};
+    array<int, 3> daysInCourseField = {daysInCourse1, daysInCourse2, daysInCourse3};
     Student *student = new Student(studentID, firstName, lastName, emailAddress, age, daysInCourseField, degreeProgram);
-    classRoster.push_back(student);
+
+    classRoster[rosterLength] = student;
+    rosterLength++;
 }
 
 void Roster::remove(string studentID) {
-    for(auto it=classRoster.begin(); it!=classRoster.end(); ){
-        string value = it.operator*()->getStudentId();
+    for (int i = 0; i < 5; i++) {
+        string value = classRoster[i]->getStudentId();
         if(value == studentID) {
-            classRoster.erase(it);
+            rosterLength--;
+            delete classRoster[i];
             // Assumption made here that there will be no duplicates
             return;
         }
-        advance(it, 1);
     }
-
     cout << "Student ID: " + studentID + " not found";
 }
 
 void Roster::printAll() {
-    for (auto &student : classRoster) {
-        student->print();
+    for (int i = 0; i < 5; ++i) {
+        classRoster[i]->print();
     }
 }
 
 void Roster::printAverageDaysInCourse(string studentID) {
     Student *student = nullptr;
-    for(auto it=classRoster.begin(); it!=classRoster.end(); ){
-        string value = it.operator*()->getStudentId();
+
+    for (int i = 0; i < 5; i++) {
+        string value = classRoster[i]->getStudentId();
         if(value == studentID) {
-            student = it.operator*();
+            student = classRoster[i];
             break;
         }
-        advance(it, 1);
     }
+
     if(!student) {
         cout << "Student ID: " + studentID + " not found";
         return;

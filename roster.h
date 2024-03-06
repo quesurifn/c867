@@ -5,8 +5,7 @@
 #ifndef C867_ROSTER_H
 #define C867_ROSTER_H
 #include "student.h"
-#include <vector>
-
+using namespace std;
 
 class Roster {
 
@@ -18,10 +17,11 @@ public:
     void printInvalidEmails();
     void printByDegreeProgram(DegreeProgram degreeProgram);
 
-    vector<Student*> getClassRoster();
+    array<Student*, 5> getClassRoster();
 
+    int rosterLength;
 private:
-    vector<Student*> classRoster;
+    array<Student *, 5> classRoster;
     ~Roster();
 };
 

@@ -7,8 +7,9 @@
 
 using namespace std;
 
+
 Student::Student(string id, string fn, string ln, string e, int a,
-                 vector<int> d, DegreeProgram p) {
+                 array<int, 3> d, DegreeProgram p) {
     studentId = id;
     firstName = fn;
     lastName = ln;
@@ -50,12 +51,12 @@ void Student::setEmailAddress(string e) {
     emailAddress = e;
 }
 
-vector<int> Student::getDaysInCourse() const {
+array<int,3> Student::getDaysInCourse() const {
     return daysInCourse;
 }
 
-void Student::setDaysInCourse(vector<int> d) {
-    daysInCourse = d;
+void Student::setDaysInCourse(array<int,3> days) {
+    daysInCourse = days;
 }
 
 void Student::setDegreeProgram(DegreeProgram d) {
