@@ -23,7 +23,7 @@ int main() {
         strcpy(char_array, str.c_str());
         char* field = strtok(char_array, ",");
 
-        vector<string> fields = {};
+        vector<string> fields;
         while (field != NULL) // exit when no more data, which includes an emtpy line
         {
             fields.push_back(field); // got data, store it
